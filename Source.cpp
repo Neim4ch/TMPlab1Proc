@@ -151,3 +151,14 @@ void OutFeature(ofstream& ofst, container* c)
 	}
 
 }
+string vowels = "aeiouyAEIOUY";
+
+int countVowel(film& fl)
+{
+	int cnt = 0;
+	for (int i = 0; i < fl.name.length(); i++)
+	{
+		if (vowels.find(fl.name[i]) < vowels.length())cnt++;
+	}
+	return cnt;
+}
