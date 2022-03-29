@@ -84,6 +84,7 @@ void OutFilm(ofstream& ofst, film& f) {
 		pd = (documentary_film*)f.obj;
 		Out(ofst, *pd);
 	}
+
 	ofst << "The picture was filmed in " << f.country << ".\n";
 }
 
