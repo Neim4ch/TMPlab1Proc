@@ -99,6 +99,7 @@ void OutFilm(ofstream& ofst, film& f) {
 		pd = (documentary_film*)f.obj;
 		Out(ofst, *pd);
 	}
+	ofst << "Number of vowels = " << countVowel(f) << endl;
 	ofst << "The picture was filmed in " << f.country << ".\n";
 }
 
@@ -134,7 +135,7 @@ void OutCont(ofstream& ofst, container* c) {
 	ofst << "Container contents " << c->size
 		<< " elements." << endl;
 
-	Sort(*c);
+	//Sort(*c);
 
 	int i = 0;
 	c->curr = c->head;
@@ -142,7 +143,6 @@ void OutCont(ofstream& ofst, container* c) {
 	{
 		ofst << i << ": ";
 		OutFilm(ofst, *(c->curr->fl));
-		ofst << "Number of vowels = " << countVowel(*(c->curr->fl)) << endl;
 		c->curr = c->curr->next;
 		i++;
 	}
@@ -180,6 +180,8 @@ void Sort(container& c)
 		}
 		curri = curri->next;
 	}
+}
+
 void OutFeature(ofstream& ofst, container* c)
 {
 	ofst << "Only feature films." << endl;

@@ -21,7 +21,13 @@ int main(int argc, char* argv[])
 
 	InCont(ifst, &c);
 	ofst << "Filled container. " << endl;
+	ofst << "Unsorted cont. " << endl;
 	OutCont(ofst, &c);
+	ofst << "\n\n" << endl;
+	Sort(c);
+	ofst << "Sorted cont. " << endl;
+	OutCont(ofst, &c);
+	ofst << "\n\n" << endl;
 	OutFeature(ofst, &c);
 	Clear(&c);
 	ofst << "Empty container. " << endl;
