@@ -73,10 +73,17 @@ film* InFilm(ifstream& ifst) {
 		return 0;
 	}
 	feature_film f1;
+<<<<<<< Updated upstream
 
 	if (fl->key == feature) {
 		f1 = *(feature_film*)fl->obj;
 
+=======
+
+	if (fl->key == feature) {
+		f1 = *(feature_film*)fl->obj;
+
+>>>>>>> Stashed changes
 	}
 	return fl;
 }
@@ -94,12 +101,15 @@ void OutFilm(ofstream& ofst, film& f) {
 		pa = (animation_film*)f.obj;
 		Out(ofst, *pa);
 	}
+<<<<<<< Updated upstream
 	if (f.key == documentary)
 	{
 		documentary_film* pd;
 		pd = (documentary_film*)f.obj;
 		Out(ofst, *pd);
 	}
+=======
+>>>>>>> Stashed changes
 }
 
 void Clear(container* c) {
@@ -143,4 +153,24 @@ void OutCont(ofstream& ofst, container* c) {
 		c->curr = c->curr->next;
 		i++;
 	}
+}
+
+void OutFeature(ofstream& ofst, container* c)
+{
+	ofst << "Only feature films." << endl;
+	c->curr = c->head;
+	int i = 0;
+	while (c->curr != NULL)
+	{
+		ofst << i << ": ";
+		if (c->curr->fl->key == feature)
+		{
+			OutFilm(ofst, *c->curr->fl);
+		}
+		else
+			ofst << endl;
+		i++;
+		c->curr = c->curr->next;
+	}
+
 }
