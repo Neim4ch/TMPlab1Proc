@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum type { animation, feature };
+enum type { animation, feature, documentary };
 struct film {
 	void* obj = NULL;
 	type key;
