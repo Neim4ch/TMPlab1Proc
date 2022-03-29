@@ -46,3 +46,10 @@ film* OutFilm(ifstream& ifst);
 void Clear(container* c);
 void InCont(ifstream& ifst, container* c);
 void OutCont(ofstream& ofst, container* c);
+<<<<<<< Updated upstream
+=======
+
+int countVowel(feature_film& f);
+int countVowel(animation_film& a);
+int countVowel(film& fl);
+>>>>>>> Stashed changes
