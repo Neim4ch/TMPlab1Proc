@@ -51,6 +51,7 @@ film* InFilm(ifstream& ifst) {
 	documentary_film* d;
 	int k = 0;
 	ifst >> k;
+	ifst >> fl->name;
 	switch (k) {
 	case 1:
 		fl->key = feature;
@@ -79,6 +80,7 @@ film* InFilm(ifstream& ifst) {
 }
 
 void OutFilm(ofstream& ofst, film& f) {
+	ofst << "This is \"" << f.name << "\". ";
 	if (f.key == feature)
 	{
 		feature_film* pf;
@@ -132,13 +134,51 @@ void OutCont(ofstream& ofst, container* c) {
 	ofst << "Container contents " << c->size
 		<< " elements." << endl;
 
+	Sort(*c);
+
 	int i = 0;
 	c->curr = c->head;
 	while (c->curr != NULL)
 	{
 		ofst << i << ": ";
 		OutFilm(ofst, *(c->curr->fl));
+		ofst << "Number of vowels = " << countVowel(*(c->curr->fl)) << endl;
 		c->curr = c->curr->next;
 		i++;
+	}
+}
+
+string vowels = "aeiouyAEIOUY";
+
+int countVowel(film& fl)
+{
+	int cnt = 0;
+	for (int i = 0; i < fl.name.length(); i++)
+	{
+		if (vowels.find(fl.name[i]) < vowels.length())cnt++;
+	}
+	return cnt;
+}
+
+bool cmpVowels(Node* f1, Node* f2)
+{
+	return countVowel(*f1->fl) < countVowel(*f2->fl);
+}
+
+void Sort(container& c)
+{
+	Node* curri = c.head;
+	Node* currj = c.head;
+	while (curri != NULL)
+	{
+		currj = curri->next;
+		while (currj != NULL) {
+			if (cmpVowels(curri, currj))
+			{
+				swap(curri->fl, currj->fl);
+			}
+			currj = currj->next;
+		}
+		curri = curri->next;
 	}
 }

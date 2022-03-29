@@ -9,6 +9,7 @@ struct film {
 	void* obj = NULL;
 	type key;
 	string country = "";
+	string name = "";
 };
 
 struct Node {
@@ -46,3 +47,8 @@ film* OutFilm(ifstream& ifst);
 void Clear(container* c);
 void InCont(ifstream& ifst, container* c);
 void OutCont(ofstream& ofst, container* c);
+
+int countVowel(film& fl);
+
+bool cmpVowels(film* f1, film* f2);
+void Sort(container& c);
