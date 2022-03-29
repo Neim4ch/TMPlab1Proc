@@ -60,24 +60,8 @@ film* InFilm(ifstream& ifst) {
 	default:
 		return 0;
 	}
-<<<<<<< HEAD
 
 	ifst >> fl->country;
-=======
-	feature_film f1;
-<<<<<<< Updated upstream
-
-	if (fl->key == feature) {
-		f1 = *(feature_film*)fl->obj;
-
-=======
-
-	if (fl->key == feature) {
-		f1 = *(feature_film*)fl->obj;
-
->>>>>>> Stashed changes
-	}
->>>>>>> filter
 	return fl;
 }
 
@@ -94,19 +78,13 @@ void OutFilm(ofstream& ofst, film& f) {
 		pa = (animation_film*)f.obj;
 		Out(ofst, *pa);
 	}
-<<<<<<< HEAD
-	ofst << "The picture was filmed in " << f.country << ".\n";
-=======
-<<<<<<< Updated upstream
 	if (f.key == documentary)
 	{
 		documentary_film* pd;
 		pd = (documentary_film*)f.obj;
 		Out(ofst, *pd);
 	}
-=======
->>>>>>> Stashed changes
->>>>>>> filter
+	ofst << "The picture was filmed in " << f.country << ".\n";
 }
 
 void Clear(container* c) {
