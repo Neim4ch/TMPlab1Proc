@@ -4,11 +4,11 @@
 
 using namespace std;
 
-enum type { animation, feature, documentary };
+enum type { animation, feature };
 struct film {
 	void* obj = NULL;
 	type key;
-
+	string name = "";
 };
 
 struct Node {
@@ -18,10 +18,6 @@ struct Node {
 
 struct feature_film {
 	string director = "";
-};
-
-struct documentary_film {
-	int year = 0;
 };
 
 enum way { DRAWN, DOLL, STOP_MOTION };// способ создания
@@ -39,17 +35,13 @@ void In(ifstream& ifst, feature_film& f);
 void Out(ofstream& ofst, feature_film& f);
 void In(ifstream& ifst, animation_film& a);
 void Out(ofstream& ofst, animation_film& a);
-void In(ifstream& ifst, documentary_film& d);
-void Out(ofstream& ofst, documentary_film& d);
 film* InFilm(ifstream& ifst);
 film* OutFilm(ifstream& ifst);
 void Clear(container* c);
 void InCont(ifstream& ifst, container* c);
 void OutCont(ofstream& ofst, container* c);
-<<<<<<< Updated upstream
-=======
 
-int countVowel(feature_film& f);
-int countVowel(animation_film& a);
 int countVowel(film& fl);
->>>>>>> Stashed changes
+
+bool cmpVowels(film* f1, film* f2);
+void Sort(container& c);
