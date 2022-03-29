@@ -1,20 +1,31 @@
-// TMPlab1Proc.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
-
-int main()
+// TMPlab1_OOP.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//#include <iostream>
+//#include <fstream>
+#include "Source.h"
+using namespace std;
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello World!\n";
+	if (argc != 3)
+	{
+		cout << "incorrect command line! "
+			"Waited: command in_file out_file"
+			<< endl;
+		exit(1);
+	}
+	ifstream ifst(argv[1]);
+	ofstream ofst(argv[2]);
+	cout << "Start" << endl;
+	container c;
+
+	string s1 = argv[1], s2 = argv[2];
+
+	InCont(ifst, &c);
+	ofst << "Filled container. " << endl;
+	OutCont(ofst, &c);
+	Clear(&c);
+	ofst << "Empty container. " << endl;
+	OutCont(ofst, &c);
+	cout << "Stop" << endl;
+	return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
