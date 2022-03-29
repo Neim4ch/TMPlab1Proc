@@ -41,6 +41,7 @@ void Clear(container* c);
 void InCont(ifstream& ifst, container* c);
 void OutCont(ofstream& ofst, container* c);
 
-int countVowel(feature_film& f);
-int countVowel(animation_film& a);
 int countVowel(film& fl);
+
+bool cmpVowels(film* f1, film* f2);
+void Sort(container& c);
