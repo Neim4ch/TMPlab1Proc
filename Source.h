@@ -52,3 +52,5 @@ int countVowel(film& fl);
 
 bool cmpVowels(film* f1, film* f2);
 void Sort(container& c);
+void OutFeature(ofstream& ofst, container* c);
+
