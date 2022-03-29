@@ -7,12 +7,6 @@ void In(ifstream& ifst, feature_film& f) {
 void Out(ofstream& ofst, feature_film& f) {
 	ofst << "It is feature film. Director is " << f.director << endl;
 }
-void In(ifstream& ifst, documentary_film& f) {
-	ifst >> f.year;
-}
-void Out(ofstream& ofst, documentary_film& f) {
-	ofst << "It is documentary film. It's year of creation is " << f.year << endl;
-}
 void In(ifstream& ifst, animation_film& a) {
 	int t;
 	ifst >> t;
@@ -30,6 +24,7 @@ void In(ifstream& ifst, animation_film& a) {
 	}
 }
 void Out(ofstream& ofst, animation_film& a) {
+
 	switch (a.woc)
 	{
 	case 0:
@@ -47,7 +42,6 @@ film* InFilm(ifstream& ifst) {
 	film* fl = new film;
 	feature_film* f;
 	animation_film* a;
-	documentary_film* d;
 	int k = 0;
 	ifst >> k;
 	switch (k) {
@@ -63,21 +57,27 @@ film* InFilm(ifstream& ifst) {
 		In(ifst, *a);
 		fl->obj = (void*)a;
 		break;
-	case 3:
-		fl->key = documentary;
-		d = new documentary_film;
-		In(ifst, *d);
-		fl->obj = (void*)d;
-		break;
 	default:
 		return 0;
 	}
+<<<<<<< HEAD
+
+	ifst >> fl->country;
+=======
 	feature_film f1;
+<<<<<<< Updated upstream
 
 	if (fl->key == feature) {
 		f1 = *(feature_film*)fl->obj;
 
+=======
+
+	if (fl->key == feature) {
+		f1 = *(feature_film*)fl->obj;
+
+>>>>>>> Stashed changes
 	}
+>>>>>>> filter
 	return fl;
 }
 
@@ -94,12 +94,19 @@ void OutFilm(ofstream& ofst, film& f) {
 		pa = (animation_film*)f.obj;
 		Out(ofst, *pa);
 	}
+<<<<<<< HEAD
+	ofst << "The picture was filmed in " << f.country << ".\n";
+=======
+<<<<<<< Updated upstream
 	if (f.key == documentary)
 	{
 		documentary_film* pd;
 		pd = (documentary_film*)f.obj;
 		Out(ofst, *pd);
 	}
+=======
+>>>>>>> Stashed changes
+>>>>>>> filter
 }
 
 void Clear(container* c) {
@@ -113,6 +120,7 @@ void InCont(ifstream& ifst, container* c) {
 
 		Node* newNode = new Node;
 		newNode->fl = InFilm(ifst);
+		//feature_film* f1 = (feature_film*)newNode->fl->obj;
 		if (c->head == NULL)
 		{
 			c->head = newNode;
@@ -143,4 +151,24 @@ void OutCont(ofstream& ofst, container* c) {
 		c->curr = c->curr->next;
 		i++;
 	}
+}
+
+void OutFeature(ofstream& ofst, container* c)
+{
+	ofst << "Only feature films." << endl;
+	c->curr = c->head;
+	int i = 0;
+	while (c->curr != NULL)
+	{
+		ofst << i << ": ";
+		if (c->curr->fl->key == feature)
+		{
+			OutFilm(ofst, *c->curr->fl);
+		}
+		else
+			ofst << endl;
+		i++;
+		c->curr = c->curr->next;
+	}
+
 }
