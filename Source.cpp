@@ -24,6 +24,7 @@ void In(ifstream& ifst, animation_film& a) {
 	}
 }
 void Out(ofstream& ofst, animation_film& a) {
+
 	switch (a.woc)
 	{
 	case 0:
@@ -59,12 +60,8 @@ film* InFilm(ifstream& ifst) {
 	default:
 		return 0;
 	}
-	feature_film f1;
 
-	if (fl->key == feature) {
-		f1 = *(feature_film*)fl->obj;
-
-	}
+	ifst >> fl->country;
 	return fl;
 }
 
@@ -81,6 +78,7 @@ void OutFilm(ofstream& ofst, film& f) {
 		pa = (animation_film*)f.obj;
 		Out(ofst, *pa);
 	}
+	ofst << "The picture was filmed in " << f.country << ".\n";
 }
 
 void Clear(container* c) {
